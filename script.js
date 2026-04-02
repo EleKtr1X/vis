@@ -26,14 +26,14 @@ window.onload = async (e) => {
         sum += n*n;
       }
       // let sum = pcm.reduce((a, b) => a + Math.pow(b, 2), 0);
-      let size = Math.sqrt(sum / pcm.length) * 1000 * (sens / 50);
+      let size = Math.sqrt(sum / pcm.length) * 1000 * (sens / 25);
       let vissize = Math.min(Math.max(size, 25), 95);
       // console.log(size);
       // let vissize = size;
       if (size > 95) {
-        hue += 10;
+        hue += 11;
         hue %= 360;
-        bg.style.backgroundColor = `hsl(${hue}, 100%, 20%)`;
+        bg.style.backgroundColor = `hsl(${hue}, 100%, 40%)`;
         // console.log(bg.style.backgroundColor);
       }
       wm.setAttribute('width', `${vissize}%`);
