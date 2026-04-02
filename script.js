@@ -19,24 +19,18 @@ window.onload = async (e) => {
 
     function newFrame() {
       const sens = document.getElementById('settings-sens').value;
-      console.log(sens);
       analyzer.getFloatTimeDomainData(pcm);
-      let sum = 0;
-      for (const n of pcm) {
-        sum += n*n;
-      }
-      // let sum = pcm.reduce((a, b) => a + Math.pow(b, 2), 0);
+      let sum = pcm.reduce((a, b) => a + Math.pow(b, 2), 0);
+      // i don't think this is actually how sensitivity works
       let size = Math.sqrt(sum / pcm.length) * 1000 * (sens / 25);
-      let vissize = Math.min(Math.max(size, 25), 95);
-      // console.log(size);
-      // let vissize = size;
-      if (size > 95) {
+      size = Math.min(Math.max(size, 25), 95);
+      let lightness = Math.round(size / 95 * 50);
+      bg.style.backgroundColor = `hsl(${hue}, 100%, ${lightness}%)`;
+      if (size == 95) {
         hue += 11;
         hue %= 360;
-        bg.style.backgroundColor = `hsl(${hue}, 100%, 40%)`;
-        // console.log(bg.style.backgroundColor);
       }
-      wm.setAttribute('width', `${vissize}%`);
+      wm.setAttribute('width', `${size}%`);
       window.requestAnimationFrame(newFrame);
     }
 
@@ -47,7 +41,6 @@ window.onload = async (e) => {
   const settingsRest = document.getElementById('settings-rest');
   let settingsOpen = false;
   settings.onclick = () => {
-    console.log('hi');
     settingsRest.style.visibility = settingsOpen ? 'hidden' : 'visible';
     settingsOpen = !settingsOpen;
   }
