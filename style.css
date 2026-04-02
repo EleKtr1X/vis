@@ -1,0 +1,32 @@
+body {
+  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#main {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#settings {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#settings-btn {
+  background-color: transparent;
+  border: none;
+  color: black;
+  mix-blend-mode: lighten;
+}
+
